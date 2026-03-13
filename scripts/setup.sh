@@ -15,7 +15,7 @@ clone_or_pull() {
     (cd "$dir" && git pull --ff-only 2>/dev/null || echo "⚠️  Pull falló — puede haber cambios locales")
   else
     echo "📥 Clonando $name..."
-    git clone "git@github.com:$REPO_ORG/$name.git" "$dir"
+    git clone "https://github.com/$REPO_ORG/$name.git" "$dir"
   fi
 }
 
