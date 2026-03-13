@@ -12,20 +12,24 @@ Meta-repositorio que orquesta todos los componentes del proyecto GrabaKar.
 
 ## Setup Rápido
 
-```bash
-# 1. Clonar este repo
-git clone git@github.com:grabakar/grabakar-infra.git
-cd grabakar-infra
+### macOS / Linux
 
-# 2. Clonar todos los repos del proyecto
+```bash
+git clone https://github.com/grabakar/grabakar-infra.git
+cd grabakar-infra
 chmod +x scripts/setup.sh
 ./scripts/setup.sh
-
-# 3. Configurar variables de entorno
 cp .env.example .env
-# Editar .env si es necesario
+docker compose up -d
+```
 
-# 4. Levantar todo
+### Windows (PowerShell o CMD)
+
+```powershell
+git clone https://github.com/grabakar/grabakar-infra.git
+cd grabakar-infra
+scripts\setup.bat
+copy .env.example .env
 docker compose up -d
 ```
 
@@ -43,7 +47,11 @@ docker compose up -d
 ## Actualizar Repos
 
 ```bash
+# macOS / Linux
 ./scripts/update.sh
+
+# Windows
+scripts\update.bat
 ```
 
 ## Estructura
@@ -53,8 +61,8 @@ grabakar-infra/
 ├── docker-compose.yml          # Orquestador del stack completo
 ├── .env.example                # Variables de entorno
 ├── scripts/
-│   ├── setup.sh                # Clona todos los repos
-│   ├── update.sh               # Pull latest de todos los repos
+│   ├── setup.sh / setup.bat    # Clona todos los repos (macOS+Linux / Windows)
+│   ├── update.sh / update.bat  # Pull latest de todos los repos
 │   └── review_precheck.sh      # Pre-check de revisión de código
 └── repos/                      # ← Los repos se clonan aquí
     ├── grabakar-backend/
