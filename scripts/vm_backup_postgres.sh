@@ -42,7 +42,7 @@ log "Applying retention policy (keep last ${BACKUP_KEEP_DAYS} days)"
 # Delete backups older than KEEP_DAYS (based on filename YYYYMMDD).
 NOW_EPOCH="$(date +%s)"
 
-gcloud storage ls "${GCS_BACKUP_PREFIX}/" --format="value(name)" | while read -r full; do
+gsutil ls "${GCS_BACKUP_PREFIX}/" | while read -r full; do
   base="$(basename "$full")"
   # Expect: <db>-backup-YYYYMMDD.sql.gz
   date_part="$(echo "$base" | sed -E 's/.*-backup-([0-9]{8})\\.sql\\.gz/\\1/')"
